@@ -12,15 +12,13 @@ const grantAdminRole = async ({email, idToken}) => {
         const user = await admin.auth().getUserByEmail(email);
         const token = await admin.auth().verifyIdToken(idToken);
 
-        console.warn(user, token);
-    
-        if (user.customClaims && user.customClaims.admin === true) {
+        if ((user.customClaims && user.customClaims.admin === true )|| token.admin) {
             return {
                 status: 200
             };
         }
-    
-        if (adminGroup.includes(email)) {
+
+        if (adminGroup.includes(email) && user.uid === token.uid) {
             const setAdmin = await admin.auth().setCustomUserClaims(user.uid, {
                 admin: true
             });
@@ -34,6 +32,7 @@ const grantAdminRole = async ({email, idToken}) => {
             }
         }
     } catch (error) {
+
         return {
             code: error.code,
             message: error.message

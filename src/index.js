@@ -32,14 +32,12 @@ app
     //         context: {req, res}
     //     }))
     // )
-    .use('/auth', async (req, res) => {
-        //req.body.variables for the email
-        //req.headers.refreshtoken from the validation token
+    .post('/auth', async (req, res) => {
         const response = await fbAdmin.grantAdminRole({
             email: req.body.variables.email,
-            idToken: req.headers.refreshtoken
+            idToken: req.headers.idtoken
         });
-        
+
         res.json(response)
     })
     .listen(process.env.HTTP_PORT, () => {
