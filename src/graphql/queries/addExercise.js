@@ -7,19 +7,16 @@ const defaultResponse = {
 }
 
 const addExercise = async (args, {idtoken}) => {
-    console.warn('this is the query', args);
-
-    return defaultResponse;
     // if (!idtoken) {
     //     return defaultResponse;
     // }
 
-    // const response = await fbAdmin.grantAdminRole({
-    //     email,
-    //     idtoken
-    // })
+    const response = await fbAdmin.addExercise({
+        exercise: args,
+        idtoken
+    })
 
-    // return response;
+    return response;
 };
 
 module.exports = {
