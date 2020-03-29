@@ -10,6 +10,8 @@ const expressPlayground = require("graphql-playground-middleware-express").defau
 
 dotenv.config();
 
+const schema = require('./graphql/Root').default;
+
 const app = express();
 
 app
@@ -23,23 +25,15 @@ app
     .use(cookieParser())
     .use(compression())
     .use('/playground', expressPlayground({ endpoint: '/api' }))
-    // .use('/api',
-    //     bodyParser.json(),
-    //     bodyParser.urlencoded({extended: true}),
-    //     cookieParser(),
-    //     graphqlHTTP((req, res) => ({
-    //         schema,
-    //         context: {req, res}
-    //     }))
-    // )
-    .post('/auth', async (req, res) => {
-        const response = await fbAdmin.grantAdminRole({
-            email: req.body.variables.email,
-            idToken: req.headers.idtoken
-        });
-
-        res.json(response)
-    })
+    .use('/api',
+        bodyParser.json(),
+        bodyParser.urlencoded({extended: true}),
+        cookieParser(),
+        graphqlHTTP((req, res) => ({
+            schema,
+            context: {req, res}
+        }))
+    )
     .listen(process.env.HTTP_PORT, () => {
         console.log(`Now browse to localhost:${process.env.HTTP_PORT}`)
     })
