@@ -69,7 +69,7 @@ export default async (query) => {
 
         saveCacheFile('searchRankings', 'json', newResults);
 
-        return newResults.rankings;
+        return newResults.rankings[cleanedQuery];
     }
 
     /**
@@ -88,8 +88,8 @@ export default async (query) => {
 
         saveCacheFile('searchRankings', 'json', nextResults);
 
-        return nextResults.rankings;
+        return nextResults.rankings[cleanedQuery];
     }
     
-    return results;
+    return results || [];
 }

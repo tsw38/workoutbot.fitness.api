@@ -36,7 +36,7 @@ export const searchModel = object({
         ...responseType,
         exercises: {
             type: list(model),
-            resolve: async ({exercises}) => exercises || []
+            resolve: async ({exercises}) => Array.isArray(exercises) ? exercises : []
         }
     })
 })
