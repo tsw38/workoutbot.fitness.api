@@ -1,20 +1,17 @@
-const { id, string } = require('../types/globals');
+import { string } from '../types/globals';
 
-const {model} = require('../models/exercise');
+import {searchModel} from '../models/exercise';
 
-const {	authenticate } = require('../queries/auth');
+import { searchExercises as searchQuery } from '../queries/exercise';
 
-export const getExercise = {
-    type: model,
+export const searchExercises = {
+    type: searchModel,
     args: {
-        id,
         name: string
     },
     resolve: async (parent, args, {req}) => {
-        return {
-            id: '1231234513fwdfe',
-            name: 'THIS IS A SAMPLE RESPONSE FROM QUERYING AN EXERCISE'
-        }
-        // return await authenticate(args, req.headers);
+        const result = await searchQuery(args.name, req.headers);
+
+        return result
     }
 }

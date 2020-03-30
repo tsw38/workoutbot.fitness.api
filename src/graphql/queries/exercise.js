@@ -1,15 +1,11 @@
 const fbAdmin = require('../../firebase/firebase');
 
-const defaultResponse = {
-    status: 406,
-    code: 'auth/error',
-    message: 'unacceptable'
-}
+import {UNAUTHORIZED} from '../../errors';
 
 export const addExercise = async (args, {idtoken}) => {
-    // if (!idtoken) {
-    //     return defaultResponse;
-    // }
+    if (!idtoken) {
+        return UNAUTHORIZED;
+    }
 
     const response = await fbAdmin.addExercise({
         exercise: args,
@@ -18,3 +14,16 @@ export const addExercise = async (args, {idtoken}) => {
 
     return response;
 };
+
+export const searchExercises = async (name, {idtoken}) => {
+    if (!idtoken) {
+        return UNAUTHORIZED;
+    }
+
+    const response = await fbAdmin.searchExercises({
+        name,
+        idtoken
+    });
+
+    return response;
+}

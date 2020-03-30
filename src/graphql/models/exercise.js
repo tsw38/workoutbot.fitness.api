@@ -28,3 +28,15 @@ export const addModel = object({
         ...types,
     })
 })
+
+export const searchModel = object({
+    name: 'SearchExercise',
+    description: 'Search Exercise Variation',
+    fields: () => ({
+        ...responseType,
+        exercises: {
+            type: list(model),
+            resolve: async ({exercises}) => exercises || []
+        }
+    })
+})

@@ -1,11 +1,7 @@
 const path = require('path');
 const Bundler = require('parcel-bundler');
 
-const entryFiles = [
-    path.join(__dirname, './src/index.js')
-]
-
-const options = {
+const default_options = {
     outDir: './build', // The out directory to put the build files in, defaults to dist
     outFile: 'server.js', // The name of the outputFile
     publicUrl: '/', // The url to serve on, defaults to '/'
@@ -25,7 +21,14 @@ const options = {
 };
     
 (async function() {
-    const bundler = new Bundler(entryFiles, options);
+    const defaultBundler = new Bundler(path.join(__dirname, './src/index.js'), default_options);
+    const functionsBundler = new Bundler(path.join(__dirname, './src/functions/*.js'), {
+        ...default_options,
+        sourceMaps: false,
+        outDir: './build/functions',
+        outFile: null
+    });
 
-    const bundle = await bundler.bundle();
+    const bundle = await defaultBundler.bundle();
+    await functionsBundler.bundle();
 })();

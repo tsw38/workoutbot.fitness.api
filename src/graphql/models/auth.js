@@ -1,11 +1,8 @@
-import { string, integer, object } from '../types/globals';
+import { object } from '../types/globals';
+import responseType from '../types/responseType';
 
 export default object({
 	name: 'Auth',
 	description: 'Authentication',
-	fields: () => ({
-        code: string,
-        message: string,
-        status: integer
-    })
+	fields: () => responseType
 });

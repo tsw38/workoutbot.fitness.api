@@ -1,14 +1,10 @@
 const fbAdmin = require('../../firebase/firebase');
 
-const defaultResponse = {
-    status: 406,
-    code: 'auth/error',
-    message: 'unacceptable'
-}
+import {UNAUTHORIZED} from '../../errors';
 
 export const authenticate = async ({email}, {idtoken}) => {
     if (!idtoken) {
-        return defaultResponse;
+        return UNAUTHORIZED;
     }
 
     const response = await fbAdmin.grantAdminRole({

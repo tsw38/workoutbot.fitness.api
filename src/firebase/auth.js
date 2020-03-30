@@ -30,7 +30,7 @@ export const grantAdminRole = (admin) => async ({email, idtoken}) => {
     } catch (error) {
 
         return {
-            code: error.code,
+            error: error.code,
             message: error.message
         };
     }

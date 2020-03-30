@@ -1,2 +1,2 @@
 export {addExercise} from './addExercise';
-export {getExercises} from './getExercises';
+export {searchExercises} from './searchExercises';

@@ -1,0 +1,62 @@
+{
+    "exercises": [
+        {
+            "id": "DLfIUOAauIUEhJCkcP36",
+            "muscleGroup": [
+                "Shoulder",
+                "Core"
+            ],
+            "interval": [
+                30
+            ],
+            "name": "Shoulder Tap"
+        },
+        {
+            "id": "Ny7ZykjGr8WogoMWtffP",
+            "muscleGroup": [
+                "Core"
+            ],
+            "interval": [
+                30
+            ],
+            "name": "Bicycle Crunch"
+        },
+        {
+            "id": "VPq8njEWZl5bGosEmqOO",
+            "muscleGroup": [
+                "Legs",
+                "Core"
+            ],
+            "interval": [
+                30
+            ],
+            "name": "Lateral Lunge"
+        },
+        {
+            "id": "m4bfFjJc1hpnrhG2L46u",
+            "muscleGroup": [
+                "Chest",
+                "Arms",
+                "Core"
+            ],
+            "interval": [
+                30,
+                45,
+                60
+            ],
+            "name": "Push Ups"
+        },
+        {
+            "id": "qbqOSep7dcNDrM3w1rAW",
+            "muscleGroup": [
+                "Core"
+            ],
+            "interval": [
+                30,
+                60,
+                45
+            ],
+            "name": "Sit Up"
+        }
+    ]
+}

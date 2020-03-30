@@ -4,7 +4,7 @@ import serviceAccount from './serviceAccount.json';
 import { grantAdminRole as grantAdmin } from './auth';
 import { 
     addExercise as fbAddExercise,
-    getExercises as fbGetExercises
+    searchExercises as fbSearchExercises
 } from './admin';
 
 admin.initializeApp({
@@ -12,6 +12,6 @@ admin.initializeApp({
     databaseURL: process.env.FIREBASE_DATABASE_URL
 })
 
-export const grantAdminRole = grantAdmin(admin);
 export const addExercise = fbAddExercise(admin);
-export const getExercises = fbGetExercises(admin);
+export const grantAdminRole = grantAdmin(admin);
+export const searchExercises = fbSearchExercises(admin);

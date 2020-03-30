@@ -1,6 +1,8 @@
+import search from '../../functions/search';
+
 import {UNAUTHORIZED} from '../../errors';
 
-export const addExercise = (admin) => async ({exercise, idtoken}) => {
+export const searchExercises = (admin) => async ({name, idtoken}) => {
     if (!idtoken) {
         return UNAUTHORIZED
     }
@@ -9,10 +11,11 @@ export const addExercise = (admin) => async ({exercise, idtoken}) => {
         const token = await admin.auth().verifyIdToken(idtoken);
 
         if (token.admin) {
-            await admin.firestore().collection('exercises').doc().set(exercise);
+            const exercises = await search(name);
+
             return {
-                status: 200,
-                message: `${exercise.name} - was successfully added`
+                exercises,
+                status: 200
             }
         }
 
