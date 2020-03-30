@@ -10,6 +10,10 @@ export const searchExercises = {
         name: string
     },
     resolve: async (parent, args, {req}) => {
+        if (args.name.length < 3) {
+            return []
+        };
+        
         const result = await searchQuery(args.name, req.headers);
 
         return result
