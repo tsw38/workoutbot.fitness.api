@@ -1,10 +1,8 @@
-const { string } = require('../types/globals');
+import Auth from '../models/auth';
+import { string } from '../types/globals';
+import { authenticate } from '../queries/auth';
 
-const Auth = require('../models/auth').default;
-
-const {	authenticate } = require('../queries/auth');
-
-exports.default = {
+export default {
     type: Auth,
     args: {
         email: string

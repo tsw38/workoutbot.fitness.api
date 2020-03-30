@@ -1,4 +1,4 @@
-const {
+import {
 	GraphQLID,
     GraphQLInt,
 	GraphQLList,
@@ -8,20 +8,18 @@ const {
 	GraphQLNonNull,
 	GraphQLObjectType,
 	GraphQLInputObjectType
-} = require('graphql');
+} from 'graphql';
 
-const GraphQLBigInt = require('graphql-bigint');
+import GraphQLBigInt from 'graphql-bigint';
 
-module.exports = {
-    id: {type: GraphQLID },
-    integer: {type: GraphQLInt },
-    biginteger: {type: GraphQLBigInt },
-    float: {type: GraphQLFloat},
-    string: {type: GraphQLString },
-    boolean: {type: GraphQLBoolean},
-    list: (type) => new GraphQLList(type),
-    stringArray: new GraphQLList(GraphQLString),
-    object: (obj) => new GraphQLObjectType(obj),
-    input: (obj) => new GraphQLInputObjectType(obj),
-    notNull: (obj) => new GraphQLNonNull(obj)
-}
+export const id          = { type: GraphQLID };
+export const integer     = { type: GraphQLInt };
+export const biginteger  = { type: GraphQLBigInt };
+export const float       = { type: GraphQLFloat };
+export const string      = { type: GraphQLString };
+export const boolean     = { type: GraphQLBoolean };
+export const stringArray = new GraphQLList(GraphQLString);
+export const list        = type => new GraphQLList(type);
+export const notNull     = obj => new GraphQLNonNull(obj);
+export const object      = obj => new GraphQLObjectType(obj);
+export const input       = obj => new GraphQLInputObjectType(obj);

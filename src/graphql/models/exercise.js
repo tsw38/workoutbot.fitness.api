@@ -1,7 +1,7 @@
-const { id, string, integer, object, list } = require('../types/globals');
-const responseType = require('../types/responseType').default;
+import responseType from '../types/responseType';
+import { id, string, integer, object, list } from '../types/globals';
 
-const types = {
+export const types = {
     id,
     name: string,
     muscleGroup: {
@@ -14,19 +14,17 @@ const types = {
     }
 };
 
-module.exports = {
-    types,
-    model: object({
-        name: 'Exercise',
-        description: 'Exercise',
-        fields: () => types
-    }),
-    addModel: object({
-        name: 'AddExercise',
-        description: 'Add Exercise Mutation',
-        fields: () => ({
-            ...responseType,
-            ...types,
-        })
+export const model = object({
+    name: 'Exercise',
+    description: 'Exercise',
+    fields: () => types
+})
+
+export const addModel = object({
+    name: 'AddExercise',
+    description: 'Add Exercise Mutation',
+    fields: () => ({
+        ...responseType,
+        ...types,
     })
-}
+})

@@ -1,6 +1,6 @@
-const { string, integer, object } = require('../types/globals');
+import { string, integer, object } from '../types/globals';
 
-exports.default = object({
+export default object({
 	name: 'Auth',
 	description: 'Authentication',
 	fields: () => ({

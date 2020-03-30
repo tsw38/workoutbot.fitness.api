@@ -1,15 +1,11 @@
-const AddExercise = require('../models/exercise');
+import { addModel, types } from '../models/exercise';
 
-const {	addExercise } = require('../queries/exercise');
+import { addExercise as addExerciseQuery } from '../queries/exercise';
 
-const addExerciseMutation = {
-    type: AddExercise.addModel,
-    args: AddExercise.types,
+export const addExercise = {
+    type: addModel,
+    args: types,
     resolve: async (parent, args, {req}) => {
-        return await addExercise(args, req.headers);
+        return await addExerciseQuery(args, req.headers);
     }
-}
-
-module.exports = {
-    addExercise: addExerciseMutation
 }

@@ -1,6 +1,6 @@
-const adminGroup = require('./groups/admin');
+import adminGroup from './groups/admin';
 
-const grantAdminRole = (admin) => async ({email, idtoken}) => {
+export const grantAdminRole = (admin) => async ({email, idtoken}) => {
     try {
         const user = await admin.auth().getUserByEmail(email);
         const token = await admin.auth().verifyIdToken(idtoken);
@@ -34,8 +34,4 @@ const grantAdminRole = (admin) => async ({email, idtoken}) => {
             message: error.message
         };
     }
-}
-
-module.exports = {
-    grantAdminRole
 }

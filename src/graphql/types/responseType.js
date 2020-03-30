@@ -1,6 +1,6 @@
-const { string, integer } = require('./globals');
+import { string, integer } from './globals';
 
-exports.default = {
+export default {
     error: string,
     message: string,
     status: integer

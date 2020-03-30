@@ -1,10 +1,10 @@
-const {GraphQLSchema} = require('graphql');
-const {object} = require('./types/globals');
+import {GraphQLSchema} from 'graphql';
+import {object} from './types/globals';
 
-const resolvers = require('./resolvers');
-const mutations = require('./mutations');
+import resolvers from './resolvers';
+import mutations from './mutations';
 
-exports.default = new GraphQLSchema({
+export default new GraphQLSchema({
     query: object({
         name: "RootQueryType",
         fields: resolvers

@@ -3,3 +3,4 @@ package-lock.json
 .env
 src/firebase/groups
 src/firebase/serviceAccount.json
+build

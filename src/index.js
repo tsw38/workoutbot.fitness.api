@@ -8,9 +8,10 @@ const graphqlHTTP = require("express-graphql");
 const fbAdmin = require('./firebase/firebase');
 const expressPlayground = require("graphql-playground-middleware-express").default;
 
+
 dotenv.config();
 
-const schema = require('./graphql/Root').default;
+import schema from './graphql/Root';
 
 const app = express();
 
@@ -25,13 +26,22 @@ app
     .use(cookieParser())
     .use(compression())
     .use('/playground', expressPlayground({ endpoint: '/api' }))
+    .get('/', (req,res,next) => {
+        res.send('HELLO!!!!!')
+    })
     .use('/api',
         bodyParser.json(),
         bodyParser.urlencoded({extended: true}),
         cookieParser(),
         graphqlHTTP((req, res) => ({
             schema,
-            context: {req, res}
+            context: {req, res},
+            customFormatErrorFn: error => ({
+                message: error.message,
+                locations: error.locations,
+                stack: error.stack ? error.stack.split('\n') : [],
+                path: error.path,
+            })
         }))
     )
     .listen(process.env.HTTP_PORT, () => {

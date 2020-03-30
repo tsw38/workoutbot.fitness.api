@@ -3,7 +3,7 @@ const defaultError = {
     status: 406
 }
 
-const addExercise = (admin) => async ({exercise, idtoken}) => {
+export const addExercise = (admin) => async ({exercise, idtoken}) => {
     if (!idtoken) {
         return defaultError
     }
@@ -26,8 +26,4 @@ const addExercise = (admin) => async ({exercise, idtoken}) => {
             message: error.message
         };
     }       
-}
-
-module.exports = {
-    addExercise
 }

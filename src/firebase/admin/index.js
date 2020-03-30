@@ -1,7 +1,2 @@
-const {addExercise} = require('./addExercise');
-const {getExercises} = require('./getExercises');
-
-module.exports = {
-    addExercise,
-    getExercises
-}
+export {addExercise} from './addExercise';
+export {getExercises} from './getExercises';

@@ -6,7 +6,7 @@ const defaultResponse = {
     message: 'unacceptable'
 }
 
-const addExercise = async (args, {idtoken}) => {
+export const addExercise = async (args, {idtoken}) => {
     // if (!idtoken) {
     //     return defaultResponse;
     // }
@@ -17,8 +17,4 @@ const addExercise = async (args, {idtoken}) => {
     })
 
     return response;
-};
-
-module.exports = {
-    addExercise
 };

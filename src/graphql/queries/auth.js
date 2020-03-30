@@ -6,7 +6,7 @@ const defaultResponse = {
     message: 'unacceptable'
 }
 
-const authenticate = async ({email}, {idtoken}) => {
+export const authenticate = async ({email}, {idtoken}) => {
     if (!idtoken) {
         return defaultResponse;
     }
@@ -17,8 +17,4 @@ const authenticate = async ({email}, {idtoken}) => {
     })
 
     return response;
-};
-
-module.exports = {
-    authenticate
 };

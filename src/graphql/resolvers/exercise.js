@@ -4,7 +4,7 @@ const {model} = require('../models/exercise');
 
 const {	authenticate } = require('../queries/auth');
 
-const getExercise = {
+export const getExercise = {
     type: model,
     args: {
         id,
@@ -18,7 +18,3 @@ const getExercise = {
         // return await authenticate(args, req.headers);
     }
 }
-
-module.exports = {
-    getExercise
-};
