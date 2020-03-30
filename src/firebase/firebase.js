@@ -2,7 +2,7 @@ const admin = require('firebase-admin');
 const serviceAccount = require('./serviceAccount.json');
 
 const { grantAdminRole } = require('./auth');
-const { addExercise } = require('./admin');
+const { addExercise, getExercises } = require('./admin');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -11,5 +11,6 @@ admin.initializeApp({
 
 module.exports = {
     addExercise: addExercise(admin),
+    getExercises: getExercises(admin),
     grantAdminRole: grantAdminRole(admin)
 }

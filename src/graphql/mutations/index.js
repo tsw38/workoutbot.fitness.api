@@ -1,5 +1,5 @@
-const addExercise = require('./addExercise').default;
+const exercise = require('./exercise');
 
 module.exports = {
-    addExercise
+    ...exercise
 }
