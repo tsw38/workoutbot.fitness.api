@@ -13,7 +13,7 @@ export const searchExercises = {
         if (args.name.length < 3) {
             return []
         };
-        
+
         const result = await searchQuery(args.name, req.headers);
 
         return result

@@ -14,6 +14,7 @@ export const searchExercises = (admin) => async ({name, idtoken}) => {
             const exercises = await search(name);
 
             return {
+                name,
                 exercises,
                 status: 200
             }

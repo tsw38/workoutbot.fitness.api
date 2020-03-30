@@ -34,6 +34,7 @@ export const searchModel = object({
     description: 'Search Exercise Variation',
     fields: () => ({
         ...responseType,
+        name: string,
         exercises: {
             type: list(model),
             resolve: async ({exercises}) => Array.isArray(exercises) ? exercises : []
