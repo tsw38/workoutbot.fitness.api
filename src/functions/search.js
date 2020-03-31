@@ -1,18 +1,8 @@
 import lunr from 'lunr';
-import path from 'path';
-import fs from 'fs';
 import stemmer from 'stemmer';
 import stopword from 'stopword';
 
-const cwd = process.cwd();
-
-const getCacheFile = (file, extension = 'json') => {
-    return JSON.parse(fs.readFileSync(path.resolve(cwd, 'cache', `${file}.${extension}`), 'utf-8'));
-}
-
-const saveCacheFile = (file, extension = 'json', data) => {
-    fs.writeFileSync(path.resolve(cwd, 'cache', `${file}.${extension}`), JSON.stringify(data));
-}
+import {getCacheFile, saveCacheFile} from '../utils/fileSystem';
 
 const generateSearchIndex = ({documents = [], searchOn = []}) => {
     var index = lunr(function() {

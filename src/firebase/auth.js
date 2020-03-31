@@ -5,7 +5,7 @@ export const grantAdminRole = (admin) => async ({email, idtoken}) => {
         const user = await admin.auth().getUserByEmail(email);
         const token = await admin.auth().verifyIdToken(idtoken);
 
-        console.warn({user, token});
+        // console.warn({user, token});
 
         if ((user.customClaims && user.customClaims.admin === true ) || token.admin) {
             return {
