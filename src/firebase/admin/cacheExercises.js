@@ -27,4 +27,25 @@ export default async (admin) => {
     });
 }
 
-// getExercises()
+export const cacheExercise = async (exercise) => {
+    const {exercises} = getCacheFile('exercises');
+    const settings = getCacheFile('settings');
+
+    console.warn('caching this?', {
+        exercises: [
+            ...(Array.isArray(exercises) && exercises),
+            exercise
+        ]
+    });
+
+    saveCacheFile('exercises', 'json', {
+        exercises: [
+            ...(Array.isArray(exercises) && exercises),
+            exercise
+        ]
+    });
+
+    saveCacheFile('exercises', 'json', {
+        exercises: ++settings.exercises || 1
+    });
+}
