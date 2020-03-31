@@ -28,24 +28,28 @@ export default async (admin) => {
 }
 
 export const cacheExercise = async (exercise) => {
+    // console.warn('hello world', exercise);
+
     const {exercises} = getCacheFile('exercises');
+    // console.warn('still works');
     const settings = getCacheFile('settings');
+    // console.warn('still works', settings);
 
-    console.warn('caching this?', {
+    // console.warn('caching this?', {
+    //     exercises: [
+    //         ...(exercises || []),
+    //         exercise
+    //     ]
+    // });
+
+    saveCacheFile('exercises', 'json', {
         exercises: [
-            ...(Array.isArray(exercises) && exercises),
+            ...(exercises || []),
             exercise
         ]
     });
 
-    saveCacheFile('exercises', 'json', {
-        exercises: [
-            ...(Array.isArray(exercises) && exercises),
-            exercise
-        ]
-    });
-
-    saveCacheFile('exercises', 'json', {
+    saveCacheFile('settings', 'json', {
         exercises: ++settings.exercises || 1
     });
 }

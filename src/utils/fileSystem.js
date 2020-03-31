@@ -8,6 +8,5 @@ export const getCacheFile = (file, extension = 'json') => {
 }
 
 export const saveCacheFile = (file, extension = 'json', data) => {
-    console.warn('this is the data', data);
     fs.writeFileSync(path.resolve(cwd, 'cache', `${file}.${extension}`), JSON.stringify(data));
 }

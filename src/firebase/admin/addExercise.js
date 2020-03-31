@@ -5,19 +5,19 @@ import {cacheExercise} from './cacheExercises';
 import {getCacheFile, saveCacheFile} from '../../utils/fileSystem';
 import {sameString} from '../../utils/string';
 
-//TODO: Instead of always caching from DB, only cache the inserted exercise 
+//TODO: Instead of always caching from DB, only cache the inserted exercise
 //TODO: Build a task to clear the exercise cache due to stale data
 export const addExercise = (admin) => async ({exercise, idtoken}) => {
-    // if (!idtoken) {
-    //     return UNAUTHORIZED
-    // }
+    if (!idtoken) {
+        return UNAUTHORIZED
+    }
 
     try {
-        // const token = await admin.auth().verifyIdToken(idtoken);        
+        const token = await admin.auth().verifyIdToken(idtoken);
 
-        // if (token.admin) {
+        if (token.admin) {
             const {exercises} = await getCacheFile('exercises');
-        
+
             // exercise already exists in the cache
             if (Array.isArray(exercises) && exercises.some(({name}) => sameString(name, exercise.name))) {
                 return {
@@ -30,17 +30,17 @@ export const addExercise = (admin) => async ({exercise, idtoken}) => {
                 const id = await admin.firestore().collection('exercises').doc(exerciseId).set(exercise);
 
                 // ONLY CACHE THIS EXERCISE
-                // await cacheExercise({
-                //     id: exerciseId,
-                //     ...exercise
-                // })
+                const cache = await cacheExercise({
+                    id: exerciseId,
+                    ...exercise
+                })
 
                 return {
                     status: 201,
                     message: `${exercise.name} - was successfully added`
                 }
             }
-        // }
+        }
 
         return UNAUTHORIZED
     } catch (error) {
@@ -48,5 +48,5 @@ export const addExercise = (admin) => async ({exercise, idtoken}) => {
             error: error.code,
             message: error.message
         };
-    }       
+    }
 }
