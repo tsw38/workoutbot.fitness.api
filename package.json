@@ -42,5 +42,9 @@
 		"queries": "./src/graphql/queries",
 		"mutations": "./src/graphql/mutations",
 		"resolvers": "./src/graphql/resolvers"
-	}
+	},
+	"engines": {
+		"node" : ">=10.19.0"
+	},
+	"engineStrict": true
 }
